@@ -1,5 +1,60 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import Link from 'next/link';
+
+const footerLinks = [
+	{
+		id: '1',
+		col: [
+			{
+				id: '1',
+				link: '#',
+				title: 'About',
+			},
+			{
+				id: '2',
+				link: '#',
+				title: 'Jobs',
+			},
+			{
+				id: '3',
+				link: '#',
+				title: 'Press',
+			},
+			{
+				id: '4',
+				link: '#',
+				title: 'Blog',
+			},
+		],
+	},
+	{
+		id: '2',
+		col: [
+			{
+				id: '1',
+				link: '#',
+				title: 'Contact Us',
+			},
+			{
+				id: '2',
+				link: '#',
+				title: 'Terms',
+			},
+			{
+				id: '3',
+				link: '#',
+				title: 'Privacy',
+			},
+		],
+	},
+];
+
+const socialMedia = [
+	{ id: '1', image: '/assets/facebook.svg', link: '#' },
+	{ id: '2', image: '/assets/twitter.svg', link: '#' },
+	{ id: '3', image: '/assets/instagram.svg', link: '#' },
+];
 
 export default function Footer() {
 	return (
@@ -21,46 +76,32 @@ export default function Footer() {
 						</div>
 					</div>
 					<div className='flex flex-col space-y-10 text-xl md:text-base md:space-x-20 md:space-y-0 md:flex-row'>
-						<div className='flex flex-col space-y-3'>
-							<a href='#'>About</a>
-							<a href='#'>Jobs</a>
-							<a href='#'>Press</a>
-							<a href='#'>Blog</a>
-						</div>
-						<div className='flex flex-col space-y-3'>
-							<a href='#'>Contact Us</a>
-							<a href='#'>Terms</a>
-							<a href='#'>Privacy</a>
-						</div>
+						{footerLinks.map((el) => (
+							<div key={el.id} className='flex flex-col space-y-3'>
+								{el.col.map((el) => (
+									<Link
+										key={el.id}
+										href={el.link}
+										className='hover:text-accentCyan'
+									>
+										{el.title}
+									</Link>
+								))}
+							</div>
+						))}
 					</div>
 					<div className='flex justify-center pb-10 space-x-3'>
-						<div>
-							<a href='#'>
-								<img
-									src='/assets/facebook.svg'
-									alt=''
-									className='p-2 bg-darkBlue rounded-full ficon'
-								/>
-							</a>
-						</div>
-						<div>
-							<a href='#'>
-								<img
-									src='/assets/twitter.svg'
-									alt=''
-									className='p-2 bg-darkBlue rounded-full ficon'
-								/>
-							</a>
-						</div>
-						<div>
-							<a href='#'>
-								<img
-									src='/assets/instagram.svg'
-									alt=''
-									className='p-2 bg-darkBlue rounded-full ficon'
-								/>
-							</a>
-						</div>
+						{socialMedia.map((el) => (
+							<div key={el.id}>
+								<Link href={el.link}>
+									<img
+										src={el.image}
+										alt=''
+										className='p-2 bg-darkBlue rounded-full ficon'
+									/>
+								</Link>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
